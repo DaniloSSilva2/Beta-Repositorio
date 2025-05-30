@@ -1,0 +1,28 @@
+.formulario {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: auto;
+    gap: 12px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+  }
+  
+  .formulario input,
+  .formulario select,
+  .formulario button {
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .formulario button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .formulario button:hover {
+    background-color: #45a049;
+  }

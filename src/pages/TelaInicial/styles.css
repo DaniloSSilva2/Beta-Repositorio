@@ -1,0 +1,25 @@
+.tela-inicial {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .tela-inicial img {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .tela-inicial h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+  
+  .tela-inicial nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  .tela-inicial nav a:hover {
+    text-decoration: underline;
+  }
