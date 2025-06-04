@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 
-function CadastroDePrato({ onCadastrar }) {
+function CadastroDePrato() {
   const [form, setForm] = useState({
     nomePrato: '',
     descricao: '',
@@ -15,18 +15,39 @@ function CadastroDePrato({ onCadastrar }) {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const novoPrato = { ...form, id: Date.now() };
-    onCadastrar(novoPrato);
-    setForm({
-      nomePrato: '',
-      descricao: '',
-      preco: '',
-      categoria: 'Entrada',
-      disponibilidade: 'Em estoque',
-      urlImagem: ''
-    });
+    const prato = { ...form };
+
+    try {
+      const response = await fetch("https://restaurante-q52p.onrender.com/pratos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(prato)
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao cadastrar prato");
+      }
+
+      alert("Prato cadastrado com sucesso!");
+
+      // Limpar o formulário após sucesso
+      setForm({
+        nomePrato: '',
+        descricao: '',
+        preco: '',
+        categoria: 'Entrada',
+        disponibilidade: 'Em estoque',
+        urlImagem: ''
+      });
+
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao cadastrar prato");
+    }
   };
 
   return (
@@ -50,5 +71,7 @@ function CadastroDePrato({ onCadastrar }) {
     </form>
   );
 }
+
+export default CadastroDePrato;
 
 export default CadastroDePrato;
