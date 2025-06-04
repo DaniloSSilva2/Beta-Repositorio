@@ -73,5 +73,3 @@ function CadastroDePrato() {
 }
 
 export default CadastroDePrato;
-
-export default CadastroDePrato;
