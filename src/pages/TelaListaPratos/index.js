@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import ListaDePratos from '../../components/ListaDePratos';
-import api from '../../services/api';  // import axios com baseURL configurada
+import api from '../../services/api';
 import './styles.css';
 
 function TelaListaPratos() {
   const [pratos, setPratos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
     const fetchPratos = async () => {
@@ -13,7 +14,9 @@ function TelaListaPratos() {
         setPratos(response.data);
       } catch (error) {
         console.error('Erro ao buscar pratos:', error);
-        setPratos([]); // limpa ou mantém vazio em caso de erro
+        setPratos([]);
+      } finally {
+        setCarregando(false);
       }
     };
 
@@ -23,7 +26,7 @@ function TelaListaPratos() {
   return (
     <div className="tela-lista">
       <h2>Cardápio</h2>
-      <ListaDePratos pratos={pratos} />
+      <ListaDePratos pratos={pratos} carregando={carregando} />
     </div>
   );
 }
